@@ -1,0 +1,36 @@
+{% extends 'layout.twig' %} 
+
+{%  block body %} 
+    <section class="container mt-5"> 
+         <h1 class="text-center mb-4">Liste des utilisateurs </h1>        
+         <table class="table">
+            <thead>  
+               <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Username</th>
+                  <th scope="col">Nom</th>
+                  <th scope="col">Prénom</th>
+                  <th scope="col">Active</th>
+                  <th scope="col">Obsevateur</th>
+                  <th scope="col">Modification</th>
+                  <th scope="col">Supprimer</th>
+                  
+               </tr>
+            </thead>
+            <tbody>
+            {% for user in listUser %}
+               <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.nom }}</td>
+                    <td>{{ user.prenom }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.active }}</td>
+                    <td>{{ user.observateur }}</td>
+                    <td><a href="?controller=utilisateur&action=updateUtilisateur&id={{ user.id }}">Modifier</a></td>
+                    <td><a href="?controller=utilisateur&action=deleteUtilisateur&id={{ user.id }}">X</a></td>
+               </tr>
+            {% endfor %}
+            </tbody>
+         </table>
+    </section>
+{%  endblock %}  

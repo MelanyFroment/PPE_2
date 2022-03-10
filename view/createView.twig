@@ -1,0 +1,33 @@
+{% extends 'layout.twig' %} 
+
+{%  block body %} 
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-md-3">
+                <form class="box mt-5" action="?controller=create&action=create" method="post" name="create">
+                    <h1 class="box-title">S'incrire</h1>
+                    <input type="text" class="box-input" name="nom" placeholder="Nom">
+                    <input type="text" class="box-input" name="prenom" placeholder="Prenom">
+                    <input type="text" class="box-input" name="username" placeholder="Nom d'utilisateur">
+                    <input type="password" class="box-input" name="password" placeholder="Mot de passe">
+                    <select class="form-select" name="admin" aria-label="Default select example">
+                        <option selected value="0">Admin/Observateur</option>
+                        <option value="1">Administrateur</option>
+                        <option value="2">Observateur</option>
+                    </select>
+                    <select class="form-select" name="active" aria-label="Default select example">
+                        <option selected value="0">Activé/Non activé</option>
+                        <option value="1">Activé</option>
+                        <option value="2">Non activé</option>
+                    </select>
+                    <input type="hidden" value="test" name="observateur">
+
+
+                    <input type="submit" value="S'inscrire " name="submit" class="box-button">
+                    <p class="box-register">Vous avez déjà un compte? <a href="?controller=home">Se connecter</a></p> 
+                </form>
+            </div> 
+        </div> 
+    </div>
+{%  endblock %}
+ 
