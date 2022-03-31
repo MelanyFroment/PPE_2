@@ -29,15 +29,18 @@ class ConnectController extends Controller
     public function loginAction()  
     {
         if ( !empty( $_POST['username']) && !empty( $_POST['password'])) {
-            var_dump($_POST);
+            // var_dump($_POST);
             
             $userData = $this->userManager->getUtilisateur($_POST['username'], $_POST['password']);
-            var_dump($userData);
+            // var_dump($userData);
 
             if (!empty($userData)) {
                 $_SESSION['utilisateur'] = $userData;
+                // var_dump($_SESSION);die;
+
                 header('Location: ?controller=home');
             }
+            
         }
     
         $this->render('connect', ['error' => true]);

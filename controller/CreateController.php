@@ -13,6 +13,7 @@ class CreateController extends Controller
     public function __construct()
     {
         if (isset($_SESSION['utilisateur'])) {
+            // var_dump($_SESSION);die;
             header('Location: ?controller=home');
         }
 
@@ -32,7 +33,7 @@ class CreateController extends Controller
         $userData = $this->userManager->add($newUser);
 
         if (!empty($userData)) { 
-            $this->render('create', ['error' => true]);
+            $this->render('connect', ['error' => true]);
         }
     }
 

@@ -15,6 +15,9 @@ class GestionUtilisateurController extends Controller
     public function __construct()
     {
         if (!isset($_SESSION['utilisateur'])) {
+            $this->userManager = $_SESSION['utilisateur'];
+
+
             header('Location: ?controller=connect');
         }
 

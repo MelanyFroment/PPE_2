@@ -32,15 +32,19 @@
                         <li class="nav-item active ">
                             <a class="nav-link" href="?controller=home">Accueil</a>
                         </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="?controller=gestionUtilisateur">Gestion utilisateur</a>
-                        </li>
+                        {% if session.utilisateur.admin == 1 %} 
+                            <li class="nav-item ">
+                                <a class="nav-link" href="?controller=gestionUtilisateur">Gestion utilisateur</a>
+                            </li>
+                        {% else %}
+                        
+                        {% endif %}
                         <li class="nav-item">
-                            {% if session.utilisateur %}
-                                <a href="?controller=connect&action=logout">Déconnexion</a>
-                            {% else %}
-                                <a href="?controller=connect">Se connecter</a>   
-                            {% endif %}   
+                        {% if session.utilisateur %}
+                            <a href="?controller=connect&action=logout">Déconnexion</a>
+                        {% else %}
+                            <a href="?controller=connect">Se connecter</a>   
+                        {% endif %}   
                         </li>
                     </ul>
                 </div>

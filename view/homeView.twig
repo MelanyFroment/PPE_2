@@ -2,6 +2,27 @@
 
 {%  block body %} 
 
+{# {% if app.listUser.admin == 1 %}
+Ok
+{% else %}
+Non
+{% endif %} #}
+
+{% if session.utilisateur.admin == 1 %} 
+   <div class="container-fluid">
+      <div class="row">
+         <p class="p-2"> Vous etes en mode admin</p>
+      </div>
+   </div>
+  
+{% else %}
+   <div class="container-fluid">
+      <div class="row">
+         <p class="p-2"> Vous etes en mode public ! </p>
+      </div>
+   </div>
+{% endif %}
+
    <section class="container mt-5"> 
       <h1 class="text-center mb-4">Liste des clubs</h1> 
       {% if updateok and message %}
