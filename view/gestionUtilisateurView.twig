@@ -2,7 +2,10 @@
 
 {%  block body %} 
     <section class="container mt-5"> 
-         <h1 class="text-center mb-4">Liste des utilisateurs </h1>        
+         <h1 class="text-center mb-4">Liste des utilisateurs </h1> 
+         {% if updateok and message %}
+            <p>{{ message|raw }}</p>
+        {% endif %}       
          <table class="table">
             <thead>  
                <tr>
@@ -21,13 +24,13 @@
             {% for user in listUser %}
                <tr>
                     <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
                     <td>{{ user.nom }}</td>
                     <td>{{ user.prenom }}</td>
-                    <td>{{ user.username }}</td>
                     <td>{{ user.active }}</td>
                     <td>{{ user.observateur }}</td>
-                    <td><a href="?controller=utilisateur&action=updateUtilisateur&id={{ user.id }}">Modifier</a></td>
-                    <td><a href="?controller=utilisateur&action=deleteUtilisateur&id={{ user.id }}">X</a></td>
+                    <td><a href="?controller=GestionUtilisateur&action=editUtilisateur&id={{ user.id }}">Modifier</a></td>
+                    <td><a href="?controller=gestionUtilisateur&action=deleteUtilisateur&id={{ user.id }}">X</a></td>
                </tr>
             {% endfor %}
             </tbody>

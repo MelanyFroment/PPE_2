@@ -44,7 +44,6 @@ class UtilisateurManager extends Manager // UtilisateurManager herite de manager
             ':username' => $username,
             ':password' => $password
         ]);
-        //$q->debugDumpParams();
     
         $userData = $q->fetch();
         return $userData;
@@ -60,18 +59,59 @@ class UtilisateurManager extends Manager // UtilisateurManager herite de manager
                 ->prepare('SELECT * FROM utilisateur WHERE id = :id' );
        $q->execute([':id' => $info]);
        $donnees = $q->fetch(\PDO::FETCH_ASSOC);
+    //    var_dump($donnees);exit();
             
       return new Utilisateur($donnees);
     }
   }
 
-    public function updateUtilisateur($username, $password)
-    {
+  public function updateInfo(Utilisateur $username)
+  {
+      $q = $this->manager
+          ->db
+          ->prepare('UPDATE utilisateur SET 
+                     username = :username,
+                     nom = :nom,
+                     prenom = :prenom,
+                     active = :active
+                     WHERE id = :id');
 
+      $ret = $q->execute( [
+          ':username'  => $username->getUsername(), 
+          ':nom'  => $username->getNom(), 
+          ':prenom'  => $username->getPrenom(), 
+          ':active'  => $username->getActive(), 
+          ':id'   => $username->getId()
+      ]);
+      return $ret;
+    //   $q->debugDumpParams();
+  }
+
+
+    public function updateUtilisateur(Utilisateur $utilisateur)
+    {
+        // var_dump($username);
+        $q = $this->manager
+                ->db
+                ->prepare('UPDATE utilisateur SET 
+                username = :username
+                nom = :nom,
+                prenom = :prenom,
+                active = :active
+                WHERE id = :id');
+     $ret = $q->execute( [
+        ':username'  => $utilisateur->getUsername(),
+        ':nom'  => $utilisateur->getNom(),
+        ':prenom'  => $utilisateur->getPrenom(),
+        ':active'  => $utilisateur->getActive(),
+        ':id'   => $utilisateur->getId()
+    ]);
+    return $ret;
     }
 
     public function deleteUtilisateur(Utilisateur $utilisateur)
     {
+        var_dump($utilisateur);
         return $this->manager
                 ->db
                 ->exec('DELETE FROM utilisateur WHERE id = '.$utilisateur->getId());

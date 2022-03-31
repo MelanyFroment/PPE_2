@@ -1,0 +1,18 @@
+{% extends 'layout.twig' %} 
+    {%  block body %} 
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-md-3">
+                <form class="box mt-5" action="?controller=GestionUtilisateur&action=updateUtilisateur&id={{ utilisateur.id }}" method="post" name="create">
+                    <h1 class="box-title">Modification du profil</h1>
+                    <input type="text" class="box-input" name="username" placeholder="Username">
+                    <input type="text" class="box-input" name="nom" placeholder="Nom">
+                    <input type="text" class="box-input" name="prenom" placeholder="Prénom">
+                    <input type="text" class="box-input" name="active" placeholder="Activer ou désactiver le profil">
+
+                    <input type="submit" value="Valider " name="submit" class="box-button">
+                </form>
+            </div> 
+        </div> 
+    </div>
+    {%  endblock %}

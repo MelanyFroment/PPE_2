@@ -1,33 +1,31 @@
 <?php
 
 namespace controller;
+
 use model\TeamManager;
 use model\Team;
 
 
-
-class HomeController extends Controller
+class GestionTeamController extends Controller 
 {
     protected $gestionController;
     protected $userManager;
 
+
     public function __construct()
     {
-        if (!isset($_SESSION['utilisateur'])) {
+        if (!isset($_SESSION['team'])) {
             header('Location: ?controller=connect');
-        }        
+        }
 
         $this->userManager = new TeamManager();
-        parent::__construct();
+        parent::__construct(); 
+        
     }
-
-
+ 
     public function defaultAction() 
     {
-        // $clubs = $this->clubManager->getAll();
-        // $this->render('home', [ 'listTeam' => $clubs ] );
         $this->gestionTeamAction();
-
     }
 
     public function gestionTeamAction(){
@@ -36,25 +34,14 @@ class HomeController extends Controller
         $this->render('home', $data);
     } 
 
-    public function createTeamAction()
-    {
-        var_dump($_POST);
-        $newUser = new Team($_POST);
-        $userData = $this->userManager->add($newUser);
-
-        if (!empty($userData)) { 
-            $this->render('createTeam', ['error' => true]);
-        }
-    } 
-
     public function editTeamAction()
     {
         if( isset( $_REQUEST['id']) ) {
-            $listTeam = $this->userManager->get( (int)$_REQUEST['id']); 
+            $team = $this->userManager->get( (int)$_REQUEST['id']); 
 
         }
         $data = [
-            'listTeam'      => $listTeam,
+            'team'      => $team,
             'updateok'  => true
         ];
         $this->render('updateListTeam', $data);
@@ -108,5 +95,4 @@ class HomeController extends Controller
         ];
         $this->render('home', $data );
     }
-
 }

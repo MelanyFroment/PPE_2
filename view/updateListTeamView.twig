@@ -1,0 +1,50 @@
+{% extends 'layout.twig' %} 
+    {%  block body %} 
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <form class="box mt-5" action="?controller=home&action=updateTeam&id={{ team.id }}" method="post" name="create">
+                    <h1 class="text-center mb-5">Rentrer les information de votre équipe</h1>
+                    <div class="row">
+                        <div class="col-6 mb-2">
+                            <input type="text" class="form-control" name="name_team" placeholder="Nom d'équipe">
+                        </div>
+                        <div class="col-6 mb-2">
+                            <input type="text" class="form-control" name="name_trainer" placeholder="Nom de l'entraineur">
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-6 mb-2">
+                            <input type="text" class="form-control" name="logo" placeholder="Logo de l'équipe">
+                        </div>
+                        <div class="col-6 mb-2">
+                            <input type="text" class="form-control" name="team_information" placeholder="Information sur l'équipe">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 mb-2">
+                            <a class="btn btn-primary float-left mt-4 col-6 " type="submit" href="?controller=home">Retour a la liste</a>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <input type="submit" value="Valider" name="submit" class="btn btn-primary float-right mt-4 col-6 ">
+                        </div>
+                    </div>
+                    
+                </form>
+            </div> 
+            <div class="col-6 mt-5">
+                <h1>Mes informations</h1>
+                <ul>
+                {% if listTeam  %}
+                    <li>{{ team.id }}</li>
+                    <li>{{ team.name_team }}</li>
+                    <li>{{ team.name_trainer }}</li>
+                    <li>{{ team.logo }}</li>
+                    <li>{{ team.team_information }}</li>
+                {% endif %}
+                </ul>
+            </div> 
+        </div> 
+    </div>
+    {%  endblock %}
