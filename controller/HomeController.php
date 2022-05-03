@@ -22,7 +22,7 @@ class HomeController extends Controller
     }
 
 
-    public function defaultAction() 
+    public function defaultAction()
     {
         // $clubs = $this->clubManager->getAll();
         // $this->render('home', [ 'listTeam' => $clubs ] );
@@ -51,7 +51,7 @@ class HomeController extends Controller
     {
         if( isset( $_REQUEST['id']) ) {
             $listTeam = $this->userManager->get( (int)$_REQUEST['id']); 
-
+            // var_dump($listTeam);
         }
         $data = [
             'listTeam'      => $listTeam,
@@ -65,14 +65,14 @@ class HomeController extends Controller
     {
         if( isset( $_REQUEST['id'] ) ) {
             $team = $this->userManager->get( (int)$_REQUEST['id'] );
-            // var_dump($utilisateur);
+
             if (isset($_REQUEST['name_team'], $_REQUEST['name_trainer'], $_REQUEST['logo'], $_REQUEST['team_information'])) {
+                var_dump($_REQUEST['name_team']);
                 $team->setName_team( $_REQUEST['name_team'] );
                 $team->setName_trainer( $_REQUEST['name_trainer'] ); 
                 $team->setLogo( $_REQUEST['logo'] );
                 $team->setTeam_information( $_REQUEST['team_information'] ); 
             }
-            // var_dump($utilisateur);
             if( $this->userManager->updateInfo( $team ) ) {
                 $message = "L'équipe <b>" . $team->getName_team() . " </b> a été modifié."; 
             } else {

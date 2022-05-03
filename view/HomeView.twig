@@ -35,4 +35,16 @@
             </tbody>
          </table>
       </section>
+{%  endblock %}      <td>{{ team.name_team }}</td>
+                  <td>{{ team.name_trainer }}</td>
+                  <td>{{ team.logo }}</td>
+                  <td>{{ team.team_information }}</td>
+                  <td><a href="?controller=gestionTeam&action=editTeam&id={{ team.id }}">Modifier</a></td>
+                  <td><a href="?controller=gestionTeam&action=deleteTeam&id={{ team.id }}">X</a></td>
+            </tr>
+         {% endfor %} 
+         </tbody>
+      </table>
+      <a class="btn btn-primary float-right mt-4" type="submit" href="?controller=home&action=createTeam">Ajouter</a>
+    </section>
 {%  endblock %}  

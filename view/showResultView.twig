@@ -1,0 +1,46 @@
+{% extends 'layout.twig' %} 
+
+{%  block body %}   
+    <div class="container">
+    <h1 class="mt-5 mb-5 text-center">Score des matchs</h1>
+        <div class="col-12">
+            <form method="post" action="?controller=gestionScore&action=showResult">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Selectionner une journée</label>
+                    <select class="form-control w-100" id="exampleFormControlSelect1" name="journee">
+                    <option value="1">Journée 1</option>
+                    <option value="2">Journée 2</option>
+                    <option value="3">Journée 3</option>
+                    <option value="4">Journée 4</option>
+                    <option value="5">Journée 5</option>
+                    </select>
+                    <input class="btn btn-primary mt-4 float-right" name="OK" type="submit"/>
+                </div>
+            </form>
+            <table class="table d-none">
+                <thead>  
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nom d'équipe</th>
+                    <th scope="col">Resultats</th>
+                    
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in listUser %}
+                <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.nom }}</td>
+                        <td>{{ user.prenom }}</td>
+                        <td>{{ user.active }}</td>
+                        <td>{{ user.observateur }}</td>
+                        <td><a href="?controller=GestionUtilisateur&action=editUtilisateur&id={{ user.id }}">Modifier</a></td>
+                        <td><a href="?controller=gestionUtilisateur&action=deleteUtilisateur&id={{ user.id }}">X</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{%  endblock %}   

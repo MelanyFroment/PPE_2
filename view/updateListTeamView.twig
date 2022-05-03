@@ -3,45 +3,46 @@
     <div class="container">
         <div class="row">
             <div class="col-6">
-                <form class="box mt-5" action="?controller=home&action=updateTeam&id={{ team.id }}" method="post" name="create">
-                    <h1 class="text-center mb-5">Rentrer les information de votre équipe</h1>
+            {# {{dump()}} #}
+                <form class="box mt-5" action="?controller=gestionTeam&action=updateTeam&id={{ team.id }}" method="post" name="create">
+                    <h1 class="text-center mb-5">Modifier les informations de votre équipe</h1>
                     <div class="row">
                         <div class="col-6 mb-2">
-                            <input type="text" class="form-control" name="name_team" placeholder="Nom d'équipe">
+                            <input type="text" class="form-control" name="name_team" placeholder="Nom d'équipe" value="{{team.name_team}}">
                         </div>
                         <div class="col-6 mb-2">
-                            <input type="text" class="form-control" name="name_trainer" placeholder="Nom de l'entraineur">
+                            <input type="text" class="form-control" name="name_trainer" placeholder="Nom de l'entraineur" value="{{team.name_trainer}}">
                         </div>
-                    </div>
+                    </div> 
                     
                     <div class="row">
                         <div class="col-6 mb-2">
-                            <input type="text" class="form-control" name="logo" placeholder="Logo de l'équipe">
+                            <input type="text" class="form-control" name="logo" placeholder="Logo de l'équipe" value="{{team.logo}}">
                         </div>
                         <div class="col-6 mb-2">
-                            <input type="text" class="form-control" name="team_information" placeholder="Information sur l'équipe">
+                            <input type="text" class="form-control" name="team_information" placeholder="Information sur l'équipe" value="{{team.team_information}}">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6 mb-2">
-                            <a class="btn btn-primary float-left mt-4 col-6 " type="submit" href="?controller=home">Retour a la liste</a>
+                            <a class="btn btn-primary float-left mt-4 col-6 w-100" type="submit" href="?controller=home">Retour</a>
                         </div>
                         <div class="col-6 mb-2">
-                            <input type="submit" value="Valider" name="submit" class="btn btn-primary float-right mt-4 col-6 ">
+                            <input type="submit" value="Valider" name="submit" class="btn btn-primary float-right mt-4 col-6 w-100 ">
                         </div>
                     </div>
-                    
                 </form>
             </div> 
             <div class="col-6 mt-5">
-                <h1>Mes informations</h1>
-                <ul>
-                {% if listTeam  %}
-                    <li>{{ team.id }}</li>
-                    <li>{{ team.name_team }}</li>
-                    <li>{{ team.name_trainer }}</li>
-                    <li>{{ team.logo }}</li>
-                    <li>{{ team.team_information }}</li>
+                <h1>Mes informations</h1> 
+                <ul class="ml-5">
+                {# {{dump()}} #}
+                {% if team  %}
+                    <li><b>Id :</b> {{ team.id }}</li>
+                    <li><b>Nom d'équipe :</b> {{ team.name_team }}</li>
+                    <li><b>Nom d'entraineur :</b> {{ team.name_trainer }}</li>
+                    <li><b>Logo :</b> {{ team.logo }}</li>
+                    <li><b>Informations :</b> {{ team.team_information }}</li>
                 {% endif %}
                 </ul>
             </div> 

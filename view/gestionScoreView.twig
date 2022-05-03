@@ -1,0 +1,50 @@
+{% extends 'layout.twig' %} 
+
+{%  block body %}   
+
+    <div class="container">
+    <h1 class="mt-5 mb-5 text-center">Score des matchs</h1>
+        <div class="col-12">
+            {# <form method="post" action="?controller=gestionScore&action=showResult">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Selectionner une journée</label>
+                    <select class="form-control w-100" id="exampleFormControlSelect1" name="journee">
+                    <option value="1">Journée 1</option>
+                    <option value="2">Journée 2</option>
+                    <option value="3">Journée 3</option>
+                    <option value="4">Journée 4</option>
+                    <option value="5">Journée 5</option>
+                    </select>
+                    <input class="btn btn-primary mt-4 float-right" name="OK" type="submit"/>
+                </div>
+            </form> #}
+            <table class="table">
+                <thead>  
+                    <tr>
+                        <th scope="col">Par journée</th>
+                        <th scope="col">Id visiteur</th>
+                        <th scope="col">Resultats domicile</th>
+                        <th scope="col">Resultats visiteur</th>
+                        <th scope="col"></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                {# {{dump()}} #}
+                {% for user in listResult %} 
+                    <tr>
+                        <td>Journée {{user.journee}} </td>
+                        <td>{{ user.id_d}}</td> 
+                        <td>{{ user.id_v }}</td> 
+                        <td><input class="form-control" type="text" name="result_d" value="{{ user.result_d }}"></td>
+                        <td><input class="form-control" type="text" name="result_v" value="{{ user.result_v }}"></td>
+                        {# <td><button class="btn btn-danger" type="submit">Supprimer</button></td> #}
+                        <td><a href="?controller=gestionScore&action=editResult&id={{ user.id }}" class="btn">Ajouter</a></td> 
+                    </tr>
+                {% endfor %} 
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+{%  endblock %}   

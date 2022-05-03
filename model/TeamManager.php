@@ -56,8 +56,11 @@ class TeamManager extends Manager
        $q->execute([':id' => $info]);
        $donnees = $q->fetch(\PDO::FETCH_ASSOC);
     //    var_dump($donnees);exit();
-            
-      return new Team($donnees);
+        if ($donnees){
+            return $donnees;
+        }else{
+            return false;
+        }
     }
   }
 
@@ -90,18 +93,17 @@ class TeamManager extends Manager
         $q = $this->manager
                 ->db
                 ->prepare('UPDATE teams SET 
-                name_team = :username
-                name_trainer = :nom,
-                logo = :prenom,
-                team_information = :team_information,
-                id = :active
+                name_team = :name_team,
+                name_trainer = :name_trainer,
+                logo = :logo,
+                team_information = :team_information
                 WHERE id = :id');
      $ret = $q->execute( [
         ':name_team'  => $team->getName_team(),
-        ':name_trainer'  => $team->getName_trainer(),
+        ':name_trainer'  => $team->getName_trainer(), 
         ':logo'  => $team->getLogo(),
         ':team_information'  => $team->getTeam_information(), 
-        ':id'   => $team->getId()
+        ':id'   => $team->getId() 
     ]);
     return $ret;
     }

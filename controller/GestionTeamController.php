@@ -1,5 +1,4 @@
 <?php
-
 namespace controller;
 
 use model\TeamManager;
@@ -14,13 +13,14 @@ class GestionTeamController extends Controller
 
     public function __construct()
     {
-        if (!isset($_SESSION['team'])) {
-            header('Location: ?controller=connect');
-        }
-
         $this->userManager = new TeamManager();
         parent::__construct(); 
         
+        if (!isset($_SESSION['username'])) {
+            // header('Location: ?controller=connect');
+            
+        //     $this->render('connect', ['error'=>true]);
+        } 
     }
  
     public function defaultAction() 
@@ -51,9 +51,11 @@ class GestionTeamController extends Controller
     public function updateTeamAction()
     {
         if( isset( $_REQUEST['id'] ) ) {
-            $team = $this->userManager->get( (int)$_REQUEST['id'] );
-            // var_dump($utilisateur);
+            $dataTeam = $this->userManager->get( (int)$_REQUEST['id'] );
+
             if (isset($_REQUEST['name_team'], $_REQUEST['name_trainer'], $_REQUEST['logo'], $_REQUEST['team_information'])) {
+                
+                $team = new Team( $dataTeam );
                 $team->setName_team( $_REQUEST['name_team'] );
                 $team->setName_trainer( $_REQUEST['name_trainer'] ); 
                 $team->setLogo( $_REQUEST['logo'] );
@@ -68,7 +70,7 @@ class GestionTeamController extends Controller
         }
         $this->_listTeam = $this->userManager->listTeam();
         $data = [
-            'listTeam'      => $this->_listTeam,
+            'listTeam'      => $this->_listTeam, 
             'message'           => $message,
             'updateok'           => true,
             

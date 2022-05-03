@@ -36,7 +36,7 @@ class GestionUtilisateurController extends Controller
         $data = ['listUser' => $listUser];
         $this->render('gestionUtilisateur', $data);
     } 
-
+ 
     public function editUtilisateurAction()
     {
         if( isset( $_REQUEST['id']) ) {

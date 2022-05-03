@@ -37,8 +37,10 @@
                                 <a class="nav-link" href="?controller=gestionUtilisateur">Gestion utilisateur</a>
                             </li>
                         {% else %}
-                        
-                        {% endif %}
+                            <li class="nav-item ">
+                                <a class="nav-link" href="?controller=gestionScore">Score</a> 
+                            </li>
+                        {% endif %} 
                         <li class="nav-item">
                         {% if session.utilisateur %}
                             <a href="?controller=connect&action=logout">Déconnexion</a>

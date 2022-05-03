@@ -2,16 +2,48 @@
     {%  block body %} 
     <div class="container">
         <div class="row">
-            <div class="col-6 offset-md-3">
+            <div class="col-6">
                 <form class="box mt-5" action="?controller=GestionUtilisateur&action=updateUtilisateur&id={{ utilisateur.id }}" method="post" name="create">
-                    <h1 class="box-title">Modification du profil</h1>
-                    <input type="text" class="box-input" name="username" placeholder="Username">
-                    <input type="text" class="box-input" name="nom" placeholder="Nom">
-                    <input type="text" class="box-input" name="prenom" placeholder="Prénom">
-                    <input type="text" class="box-input" name="active" placeholder="Activer ou désactiver le profil">
-
-                    <input type="submit" value="Valider " name="submit" class="box-button">
+                    <h1 class="text-center mb-5">Modification du profil</h1>
+                    <div class="row">
+                        <div class="col-6 mb-2">
+                            <input type="text" class="form-control" name="username" placeholder="Nom d'utilisateur" value="{{utilisateur.username}}">
+                        </div>
+                        <div class="col-6 mb-2">
+                            <input type="text" class="form-control" name="nom" placeholder="Votre nom" value="{{utilisateur.nom}}">
+                        </div>
+                    </div> 
+                    
+                    <div class="row">
+                        <div class="col-6 mb-2">
+                            <input type="text" class="form-control" name="prenom" placeholder="Votre prénom" value="{{utilisateur.prenom}}">
+                        </div>
+                        <div class="col-6 mb-2">
+                            <input type="text" class="form-control" name="active" placeholder="Activer ou désactiver le profil" value="{{utilisateur.active}}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 mb-2">
+                            <a class="btn btn-primary float-left mt-4 col-6 w-100" type="submit" href="?controller=home">Retour</a>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <input type="submit" value="Valider" name="submit" class="btn btn-primary float-right mt-4 col-6 w-100 ">
+                        </div>
+                    </div>
                 </form>
+            </div> 
+            <div class="col-6 mt-5">
+               <h1>Mes informations</h1> 
+                <ul class="ml-5">
+                {# {{dump()}} #}
+                {% if utilisateur  %}
+                    <li><b>Id :</b> {{ utilisateur.id }}</li>
+                    <li><b>Nom d'utilisateur :</b> {{ utilisateur.username }}</li>
+                    <li><b>Nom :</b> {{ utilisateur.nom }}</li>
+                    <li><b>Prénom :</b> {{ utilisateur.prenom }}</li>
+                    <li><b>Activé / Non activé :</b> {{ utilisateur.active }}</li>
+                {% endif %}
+                </ul>
             </div> 
         </div> 
     </div>
