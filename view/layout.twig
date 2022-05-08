@@ -19,6 +19,9 @@
         <header> 
         {# VOIR OU FAUT METTRE javascript:void(0) #}
         {%  block header %} 
+        
+            
+
             <nav class="navbar navbar-expand-custom navbar-mainbg">
                 <a class="navbar-brand navbar-logo" href="#">
                     <img class="logo" src="./public/img/cropped-LRGEB2-5.png" alt="Grapefruit slice atop a pile of other slices">
@@ -30,15 +33,21 @@
                     <ul class="navbar-nav ml-auto">
                         <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
                         <li class="nav-item active ">
-                            <a class="nav-link" href="?controller=home">Accueil</a>
+                            <a class="nav-link" href="?controller=home">
+                                Accueil
+                            </a>
                         </li>
                         {% if session.utilisateur.admin == 1 %} 
                             <li class="nav-item ">
-                                <a class="nav-link" href="?controller=gestionUtilisateur">Gestion utilisateur</a>
+                                <a class="nav-link" href="?controller=gestionUtilisateur">
+                                    Gestion utilisateur
+                                </a>
                             </li>
                         {% else %}
                             <li class="nav-item ">
-                                <a class="nav-link" href="?controller=gestionScore">Score</a> 
+                                <a class="nav-link" href="?controller=gestionScore">
+                                    Score
+                                </a> 
                             </li>
                         {% endif %} 
                         <li class="nav-item">

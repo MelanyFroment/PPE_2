@@ -19,13 +19,8 @@ class GestionScoreController extends Controller
         $this->userManager = new ResultsManager();
         parent::__construct();
         if (!isset($_SESSION['utilisateur'])) {
-            // $this->resultManager = $_SESSION['utilisateur'];
-
-            // header('Location: ?controller=connect');
+            
         }        
-
-        // $this->resultManager = new ResultsManager(); 
-        // parent::__construct();
     }
 
     public function defaultAction() 
@@ -41,24 +36,23 @@ class GestionScoreController extends Controller
         $this->render('gestionScore', $data);    
     } 
 
-    //Editer les résultats
-    // public function showResultAction(){
-    //     if (!empty($_REQUEST['journee'])){
-    //         $listResult = $this->userManager->getResultDay($_REQUEST['journee']);
+        public function showResultAction(){
+        if (!empty($_REQUEST['journee'])){
+            $listResult = $this->userManager->getResultDay($_REQUEST['journee']);
             
-    //     }
-    //     $data = [
-    //         'listResult' => $listResult
-    //     ];
-    //     $this->render('updateListScore', $data ); 
-    //     // var_dump($_REQUEST);die;
+        }
+        $data = [
+            'listResult' => $listResult
+        ];
+        $this->render('updateListScore', $data ); 
+        // var_dump($_REQUEST);die;
      
-    // }
+    }
 
     public function editResultAction()
     {
         if( isset( $_REQUEST['id']) ) {
-            $results = $this->userManager->getResultDay( (int)$_REQUEST['id']); 
+            $results = $this->userManager->get( (int)$_REQUEST['id']); 
 
         }
         $data = [
@@ -75,19 +69,19 @@ class GestionScoreController extends Controller
 
             if (isset($_REQUEST['id_d'], $_REQUEST['id_v'], $_REQUEST['journee'], $_REQUEST['result_d'],  $_REQUEST['result_v'])) {
                 
-                $results = new Results( $dataScore );
-                $results->setId_d( $_REQUEST['id_d'] );
-                $results->setId_v( $_REQUEST['id_v'] ); 
-                $results->setJournee( $_REQUEST['journee'] );
-                $results->setResult_dom( $_REQUEST['result_d'] );
-                $results->setResult_visiteur( $_REQUEST['result_v'] ); 
+                $data =[
+                    "id"=>$_POST['id'],
+                    "id_d"=>$_POST['id_d'],
+                    "id_v"=>$_POST['id_v'],
+                    "journee"=>$_POST['journee'],
+                    "result_dom"=>(int)$_POST['result_d'],
+                    "result_visiteur"=>(int)$_POST['result_v'],
+                ];
+                // var_dump($data);
+                $results = new Results($data);
+                // var_dump($results);
+                $updateScore = $this->userManager->updateScore($results);
             }
-            // var_dump((int)$_REQUEST['id']);exit;
-            // if( $this->userManager->updateInfo( $results ) ) {
-            //     $message = "L'équipe <b>" . $results->getid_d() . " </b> vs ". $results->getid_v() ." a été modifié."; 
-            // } else {
-            //     $message = 'La modification a échoué !';
-            // }
         }
         $this->_listResult = $this->userManager->listResult();
         $dataScore = [
@@ -98,19 +92,5 @@ class GestionScoreController extends Controller
         ];
         $this->render('gestionScore', $dataScore ); 
     }
-
-    // public function editScoreAction()
-    // {
-    //     if( isset( $_REQUEST['id']) ) {
-    //         $score = $this->userManager->get( (int)$_REQUEST['id']); 
-
-    //     }
-    //     $data = [
-    //         'score'      => $score,
-    //         'updateok'  => true
-    //     ];
-    //     $this->render('updateListTeam', $data);
-    // }
-
 
 }

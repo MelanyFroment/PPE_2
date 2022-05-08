@@ -18,10 +18,17 @@
                     <input class="btn btn-primary mt-4 float-right" name="OK" type="submit"/>
                 </div>
             </form> #}
+            {# {{dump(listResult)}} #}
+            {# {% if listResult.journee == 1 %}
+            Egale  a 1
+            {% else %}
+            NON
+            {% endif %} #}
             <table class="table">
                 <thead>  
                     <tr>
                         <th scope="col">Par journée</th>
+                        <th scope="col">Id Domicile</th>
                         <th scope="col">Id visiteur</th>
                         <th scope="col">Resultats domicile</th>
                         <th scope="col">Resultats visiteur</th>
@@ -33,13 +40,14 @@
                 {# {{dump()}} #}
                 {% for user in listResult %} 
                     <tr>
+
                         <td>Journée {{user.journee}} </td>
-                        <td>{{ user.id_d}}</td> 
+                        <td>{{ user.id_d}} </td> 
                         <td>{{ user.id_v }}</td> 
-                        <td><input class="form-control" type="text" name="result_d" value="{{ user.result_d }}"></td>
-                        <td><input class="form-control" type="text" name="result_v" value="{{ user.result_v }}"></td>
+                        <td><input class="form-control" type="text" name="result_d" value="{{ user.result_d }}" readonly></td>
+                        <td><input class="form-control" type="text" name="result_v" value="{{ user.result_v }}" readonly></td>
                         {# <td><button class="btn btn-danger" type="submit">Supprimer</button></td> #}
-                        <td><a href="?controller=gestionScore&action=editResult&id={{ user.id }}" class="btn">Ajouter</a></td> 
+                        <td><a href="?controller=gestionScore&action=editResult&id={{ user.id }}" class="btn">Ajouter ou modifier</a></td> 
                     </tr>
                 {% endfor %} 
                 </tbody>

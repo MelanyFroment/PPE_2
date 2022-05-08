@@ -31,7 +31,7 @@ class Results
     }
 
     // GETTERS // //Recuperer 
-        public function getId()
+    public function getId()
     {
         return $this->_id;
     }
@@ -76,26 +76,37 @@ class Results
 
     public function setId_d($id_d)
     {
-        $id_d = (int) $id_d;
+        if(is_int($id_d)){
+            $this->_id_d = $id_d;
+        }
+        
     }
 
     public function setId_v($id_v)
     {
-        $id_v = (int) $id_v;
+        if(is_int($id_v)){
+            $this->_id_v = $id_v;
+        }
     }
 
     public function setJournee($journee)
     {
-        $journee = (int) $journee;
+        if(is_int($journee)){
+            $this->_journee = $journee;
+        }
     }
 
     public function setResult_dom($result_dom)
     {
-        $result_dom = (int) $result_dom;
+        if(is_int($result_dom)){
+            $this->_result_dom = $result_dom;
+        }
     }
 
      public function setResult_visiteur($result_visiteur)
     {
-        $result_visiteur = (int) $result_visiteur;
+        if(is_int($result_visiteur)){
+            $this->_result_visiteur = $result_visiteur;
+        }
     }
 }

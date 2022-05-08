@@ -4,23 +4,23 @@
         <div class="row">
             <div class="col-6">
             {# {{dump()}} #}
-                <form class="box mt-5" action="?controller=gestionTeam&action=updateTeam&id={{ team.id }}" method="post" name="create">
+                <form class="box mt-5" action="?controller=gestionTeam&action=updateTeam&id={{ listTeam.id }}" method="post" name="create">
                     <h1 class="text-center mb-5">Modifier les informations de votre équipe</h1>
                     <div class="row">
                         <div class="col-6 mb-2">
-                            <input type="text" class="form-control" name="name_team" placeholder="Nom d'équipe" value="{{team.name_team}}">
+                            <input type="text" class="form-control" name="name_team" placeholder="Nom d'équipe" value="{{listTeam.name_team}}">
                         </div>
                         <div class="col-6 mb-2">
-                            <input type="text" class="form-control" name="name_trainer" placeholder="Nom de l'entraineur" value="{{team.name_trainer}}">
+                            <input type="text" class="form-control" name="name_trainer" placeholder="Nom de l'entraineur" value="{{listTeam.name_trainer}}">
                         </div>
                     </div> 
                     
                     <div class="row">
                         <div class="col-6 mb-2">
-                            <input type="text" class="form-control" name="logo" placeholder="Logo de l'équipe" value="{{team.logo}}">
+                            <input type="text" class="form-control" name="logo" placeholder="Logo de l'équipe" value="{{listTeam.logo}}">
                         </div>
                         <div class="col-6 mb-2">
-                            <input type="text" class="form-control" name="team_information" placeholder="Information sur l'équipe" value="{{team.team_information}}">
+                            <input type="text" class="form-control" name="team_information" placeholder="Information sur l'équipe" value="{{listTeam.team_information}}">
                         </div>
                     </div>
                     <div class="row">
@@ -37,12 +37,12 @@
                 <h1>Mes informations</h1> 
                 <ul class="ml-5">
                 {# {{dump()}} #}
-                {% if team  %}
-                    <li><b>Id :</b> {{ team.id }}</li>
-                    <li><b>Nom d'équipe :</b> {{ team.name_team }}</li>
-                    <li><b>Nom d'entraineur :</b> {{ team.name_trainer }}</li>
-                    <li><b>Logo :</b> {{ team.logo }}</li>
-                    <li><b>Informations :</b> {{ team.team_information }}</li>
+                {% if listTeam  %}
+                    <li><b>Id :</b> {{ listTeam.id }}</li>
+                    <li><b>Nom d'équipe :</b> {{ listTeam.name_team }}</li>
+                    <li><b>Nom d'entraineur :</b> {{ listTeam.name_trainer }}</li>
+                    <li><b>Logo :</b> {{ listTeam.logo }}</li>
+                    <li><b>Informations :</b> {{ listTeam.team_information }}</li>
                 {% endif %}
                 </ul>
             </div> 

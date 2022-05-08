@@ -1,46 +1,53 @@
 {% extends 'layout.twig' %} 
 
 {%  block body %} 
-      <section class="container mt-5"> 
-         <!-- {{ clubs }} -->
-         <h1 class="text-center mb-4">Liste des clubs</h1>
-         <table class="table">
-            <thead> 
-               <tr>
-                  <th scope="col">Id</th>
-                  <th scope="col">#</th>
-                  <th scope="col">#</th>
-                  <th scope="col">#</th>
-               </tr>
-            </thead>
-            <tbody>
-               <tr>
-                  <th scope="row">Nom d'équipe</th>
-                  <td>#</td>
-                  <td>#</td>
-                  <td>#</td>
-               </tr>
-               <tr>
-                  <th scope="row">Nom d'entraineur</th>
-                  <td>#</td>
-                  <td>#</td>
-                  <td>#</td>
-               </tr>
-               <tr>
-                  <th scope="row">Logo équipe</th>
-                  <td>#</td>
-                  <td>#</td>
-                  <td>#</td>
-               </tr>
-            </tbody>
-         </table>
-      </section>
-{%  endblock %}      <td>{{ team.name_team }}</td>
+
+{# {% if app.listUser.admin == 1 %}
+Ok
+{% else %}
+Non
+{% endif %} #}
+
+{% if session.utilisateur.admin == 1 %} 
+   <div class="container-fluid">
+      <div class="row">
+         <p class="p-2"> Vous etes en mode admin</p>
+      </div>
+   </div>
+  
+{% else %}
+   <div class="container-fluid">
+      <div class="row">
+         <p class="p-2"> Vous etes en mode public ! </p>
+      </div>
+   </div>
+{% endif %}
+
+   <section class="container mt-5"> 
+      <h1 class="text-center mb-4">Liste des clubs</h1> 
+      {% if updateok and message %}
+         <p>{{ message|raw }}</p>
+      {% endif %}       
+      <table class="table">
+         <thead>  
+            <tr>
+               <th scope="col">Id</th>
+               <th scope="col">Nom d'équipe</th>
+               <th scope="col">Nom d'entraineur</th>
+               <th scope="col">Logo équipe</th>
+               <th scope="col">Déscription de l'équipe</th>
+            </tr>
+         </thead>
+         <tbody>
+         {% for team in listTeam %} 
+            <tr>
+                  <td>{{ team.id }}</td>
+                  <td>{{ team.name_team }}</td>
                   <td>{{ team.name_trainer }}</td>
                   <td>{{ team.logo }}</td>
                   <td>{{ team.team_information }}</td>
-                  <td><a href="?controller=gestionTeam&action=editTeam&id={{ team.id }}">Modifier</a></td>
-                  <td><a href="?controller=gestionTeam&action=deleteTeam&id={{ team.id }}">X</a></td>
+                  <td><a href="?controller=home&action=editTeam&id={{ team.id }}">Modifier</a></td>
+                  <td><a href="?controller=home&action=deleteTeam&id={{ team.id }}">X</a></td>
             </tr>
          {% endfor %} 
          </tbody>
