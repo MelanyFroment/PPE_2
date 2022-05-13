@@ -28,12 +28,22 @@ class CreateController extends Controller
 
     public function createAction()
     {
-        var_dump($_POST);
-        $newUser = new Utilisateur($_POST);
+        $dataUser = [
+            'prenom' => $_POST['prenom'],
+            'nom' => $_POST['nom'],
+            'username' => $_POST['username'],
+            'admin' => $_POST['admin'],
+            'active' => $_POST['active'],
+            'observateur' => $_POST['observateur'],
+            'password' =>  $getpassword=sodium_crypto_pwhash_str($_POST['password'],SODIUM_CRYPTO_PWHASH_OPSLIMIT_INTERACTIVE, SODIUM_CRYPTO_PWHASH_MEMLIMIT_INTERACTIVE),
+
+        ];                           
+        var_dump($dataUser);
+        $newUser = new Utilisateur($dataUser);
         $userData = $this->userManager->add($newUser);
 
         if (!empty($userData)) { 
-            $this->render('connect', ['error' => true]);
+            $this->render('connect', ['error' => true]); 
         }
     }
 

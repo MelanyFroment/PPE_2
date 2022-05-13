@@ -28,8 +28,8 @@
                 <thead>  
                     <tr>
                         <th scope="col">Par journée</th>
-                        <th scope="col">Id Domicile</th>
-                        <th scope="col">Id visiteur</th>
+                        <th scope="col">Equipe Domicile</th>
+                        <th scope="col">Equipe visiteur</th>
                         <th scope="col">Resultats domicile</th>
                         <th scope="col">Resultats visiteur</th>
                         <th scope="col"></th>
@@ -37,13 +37,16 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <div class="alert alert-primary" role="alert">
+                        <p>Toutes les journées ne sont pas affichées car elles ne sont pas complètes !</p>
+                    </div>
                 {# {{dump()}} #}
                 {% for user in listResult %} 
                     <tr>
 
                         <td>Journée {{user.journee}} </td>
-                        <td>{{ user.id_d}} </td> 
-                        <td>{{ user.id_v }}</td> 
+                        <td>{{ user.nomEquipe}} </td> 
+                        <td>{{ user.nomEquipeAdv }}</td> 
                         <td><input class="form-control" type="text" name="result_d" value="{{ user.result_d }}" readonly></td>
                         <td><input class="form-control" type="text" name="result_v" value="{{ user.result_v }}" readonly></td>
                         {# <td><button class="btn btn-danger" type="submit">Supprimer</button></td> #}

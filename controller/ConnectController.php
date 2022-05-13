@@ -28,21 +28,17 @@ class ConnectController extends Controller
 
     public function loginAction()  
     {
-        if ( !empty( $_POST['username']) && !empty( $_POST['password'])) {
-            // var_dump($_POST);
-            
-            $userData = $this->userManager->getUtilisateur($_POST['username'], $_POST['password']);
-            // var_dump($userData);
-
-            if (!empty($userData)) {
+        if ( !empty( $_POST['username']) && !empty( $_POST['password'])) {            
+            $userData = $this->userManager->getUtilisateur($_POST['username']);
+            $verifepassword = sodium_crypto_pwhash_str_verify($userData['password'],$_POST['password'] );
+            $getCount = $this->userManager->getCount($_POST['username']);
+            // var_dump($getCount);die;
+            if ($getCount == 1  &&  $verifepassword == true ) {
                 $_SESSION['utilisateur'] = $userData;
-                // var_dump($_SESSION);die;
 
                 header('Location: ?controller=home');
-            }
-            
+            }   
         }
-    
         $this->render('connect', ['error' => true]);
     }
 

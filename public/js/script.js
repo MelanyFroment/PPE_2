@@ -54,8 +54,15 @@ function test(){
 	var target = $('#navbarSupportedContent ul li a[href="'+path+'"]');
 	// Add active class to target link
 	target.parent().addClass('active');
-  });
-  
+
+/*
+    $('.navbar-nav a').on('click', function(e){
+        $('.navbar-nav li').removeClass('active');
+        let el = $(this)
+        $(el).parent().addClass('active');
+    });:*/
+
+  }); 
   
   
   

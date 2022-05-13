@@ -125,7 +125,7 @@ class ResultsManager extends Manager
         $users = [];
         $q = $this->manager 
             ->db    
-                ->prepare('SELECT * FROM `results` ');
+                ->prepare('SELECT journee, results.id, t2.name_team AS nomEquipeAdv, t1.name_team AS nomEquipe, results.result_d, results.result_v FROM results INNER JOIN teams t1 ON results.id_d = t1.id INNER JOIN teams t2 ON results.id_v = t2.id                '); 
         $q->execute();
         $listUser = $q->fetchAll(PDO::FETCH_ASSOC);
         return $listUser;

@@ -1,6 +1,9 @@
 <?php
 session_start(); // On appelle session_start() APRÈS avoir enregistré l'autoload.
 
+// $getpassword=sodium_crypto_pwhash_str('P3r5&L*C' ,SODIUM_CRYPTO_PWHASH_OPSLIMIT_INTERACTIVE, SODIUM_CRYPTO_PWHASH_MEMLIMIT_INTERACTIVE);
+// echo $getpassword;die;
+
 ini_set( 'display_errors', 1 );
 error_reporting( E_ALL );
 

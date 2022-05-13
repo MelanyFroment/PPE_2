@@ -35,17 +35,29 @@ class UtilisateurManager extends Manager // UtilisateurManager herite de manager
       return $cpt;
     }
 
-    public function getUtilisateur($username, $password)
+    public function getUtilisateur($username)
     {
         $q = $this->manager 
             ->db    
-                ->prepare('SELECT * FROM `utilisateur` WHERE username = :username AND password = :password'); // Fonction PDO = prepare('') // Ne pas mettre les valeur direct ppour une meilleur securité // On enregistre ne bdd
+                ->prepare('SELECT * FROM `utilisateur` WHERE username = :username'); // Fonction PDO = prepare('') // Ne pas mettre les valeur direct ppour une meilleur securité // On enregistre ne bdd
         $q->execute([
             ':username' => $username,
-            ':password' => $password
         ]);
     
         $userData = $q->fetch();
+        return $userData;
+    }
+
+    public function getCount($username)
+    {
+        $q = $this->manager 
+            ->db    
+                ->prepare('SELECT * FROM `utilisateur` WHERE username = :username'); // Fonction PDO = prepare('') // Ne pas mettre les valeur direct ppour une meilleur securité // On enregistre ne bdd
+        $q->execute([
+            ':username' => $username,
+        ]);
+    
+        $userData = $q->rowCount();
         return $userData;
     }
 
